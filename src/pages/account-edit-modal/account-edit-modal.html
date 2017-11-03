@@ -1,0 +1,108 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            {{'Profile' | translate}}
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+    <form [formGroup]="form" #rForm="ngForm" (ngSubmit)="submitProfile(rForm)">
+        <div class="item-avatar" >
+            <image-capture #image (imageChange)="changePhoto($event)">
+                <ion-avatar>
+                    <img *ngIf="photo" [src]="photo">
+                    <img *ngIf="!photo" src="assets/img/user.png">
+                </ion-avatar>
+            </image-capture>
+        </div>
+        <ion-list>
+            <!-- Name-->
+             <ion-item>
+                <ion-label floating>First name *</ion-label>
+                <ion-input type="text" formControlName="first_name"></ion-input>
+            </ion-item>
+            <ion-item class="form-error-list"
+                      *ngIf="!form.controls.first_name.pristine && !form.controls.first_name.valid">
+                <p class="form-error" item-right
+                   *ngIf="!form.controls.first_name.pristine && form.controls.first_name.hasError('required')">
+                    {{'This is a required field.' | translate}}
+                </p>
+            </ion-item>
+
+             <ion-item>
+                <ion-label floating>Last name *</ion-label>
+                <ion-input type="text" formControlName="last_name"></ion-input>
+            </ion-item>
+            <ion-item class="form-error-list"
+                      *ngIf="!form.controls.last_name.pristine && !form.controls.last_name.valid">
+                <p class="form-error" item-right
+                   *ngIf="!form.controls.last_name.pristine && form.controls.last_name.hasError('required')">
+                    {{'This is a required field.' | translate}}
+                </p>
+            </ion-item>
+
+            <!-- Username -->
+             <ion-item>
+                <ion-label floating>{{'Username' | translate}} *</ion-label>
+                 <ion-input #username type="text" formControlName="username" [attr.maxlength]="12"></ion-input>
+            </ion-item>
+            <ion-item class="form-error-list"
+                      *ngIf="!form.controls.username.pristine && !form.controls.username.valid">
+                <p class="form-error" item-right
+                   *ngIf="!form.controls.username.pristine && form.controls.username.hasError('required')">
+                    {{'This is a required field.' | translate}}
+                </p>
+            </ion-item>
+
+            <!-- Website -->
+             <ion-item>
+                <ion-label floating>{{'Website' | translate}}</ion-label>
+                <ion-input type="text" formControlName="website"></ion-input>
+            </ion-item>
+
+
+            <!-- Email-->
+            <ion-item>
+                <ion-label floating>{{'Email' | translate}} *</ion-label>
+                <ion-input #email type="email" formControlName="email"
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+            </ion-item>
+            <ion-item class="form-error-list"
+                      *ngIf="!form.controls.email.pristine && !form.controls.email.valid">
+                <p class="form-error" item-right
+                   *ngIf="!form.controls.email.pristine && form.controls.email.hasError('required')">
+                    {{'This is a required field.' | translate}}
+                </p>
+            </ion-item>
+            <!-- Birthday -->
+            <ion-item>
+                <ion-label floating>{{'Birthday' | translate}}</ion-label>
+                <ion-datetime formControlName="birthday"
+                              displayFormat="MM/DD/YYYY"></ion-datetime>
+            </ion-item>
+            <!-- Phone -->
+            <ion-item>
+                <ion-label floating>{{'Phone' | translate}}</ion-label>
+                <ion-input type="text" formControlName="phone"></ion-input>
+            </ion-item>
+            <!-- Gender -->
+            <ion-item>
+                <ion-label stacked>{{'Gender' | translate}}</ion-label>
+                <ion-select formControlName="gender">
+                    <ion-option value='male' selected="selected">{{'Male' | translate}}</ion-option>
+                    <ion-option value='female'>{{'Female' | translate }}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <div padding>
+            <button type="submit" ion-button block>{{'Submit' | translate}}</button>
+        </div>
+    </form>
+</ion-content>

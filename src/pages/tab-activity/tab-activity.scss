@@ -1,0 +1,20 @@
+page-tab-activity {
+
+  $thumbsize:80px;
+  ion-thumbnail {
+    img {
+      display: block !important;
+      height: $thumbsize !important;
+      width: $thumbsize !important;
+    }
+  }
+
+  .item-ios {
+  	background: #3c3c3c;
+  }
+
+  .item-ios h3, .item-ios h4, .item-ios h5, .item-ios h6
+  {
+  color: #fff;
+  }
+}

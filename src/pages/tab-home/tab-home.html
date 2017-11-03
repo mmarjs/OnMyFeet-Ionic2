@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="primaryContrast">
+        <ion-buttons>
+            <button ion-button icon-only (click)="openSouls()">
+            <ion-icon name="icon-new-soles"></ion-icon>
+            </button>
+            <button ion-button icon-only (click)="openStore()">
+            <ion-icon name="icon-new-store"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title><img src="assets/img/omf-laces.png" class="omf-laces"/></ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="onPageChat()">
+                <ion-icon name="icon-new-chat"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content fullscreen>
+    <upload-status></upload-status>
+    <ion-refresher (ionRefresh)="doRefresh($event)" [enabled]="isIOS">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <photo-list [event]="eventName"></photo-list>
+    <ion-infinite-scroll *ngIf="moreItem" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

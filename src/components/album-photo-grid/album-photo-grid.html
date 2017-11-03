@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>{{'Photos'| translate}}</ion-title>
+        <ion-buttons end>
+            <button *ngIf="canEdit" ion-button icon-only (click)="popover($event)">
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <loader *ngIf="loading"></loader>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- error -->
+    <div class="center" *ngIf="showErrorView" padding>
+        <div class="error ">
+            <ion-icon [name]="errorIcon"></ion-icon>
+            <p>{{ "errorText" | translate }}</p>
+            <button ion-button color="primary" (click)="onQuery()">{{ 'tryAgainText' | translate }}</button>
+        </div>
+    </div>
+    <!-- empty-->
+    <div class="center" *ngIf="showEmptyView" padding>
+        <div class="error">
+            <ion-icon [name]="errorIcon"></ion-icon>
+            <p>{{ 'Album not found' | translate }}</p>
+        </div>
+    </div>
+    <div *ngIf="!loading">
+        <div *ngFor="let item of data; let index = index">
+            <ion-row *ngIf="index % 3 === 0 ">
+                <ion-col width-33 *ngIf="index < data.length">
+                    <img (click)="openPhoto(data[index])" [src]="data[index]['imageThumb']">
+                </ion-col>
+                <ion-col width-33 *ngIf="index +1 < data.length">
+                    <img (click)="openPhoto(data[index+1])" [src]="data[index+1]['imageThumb']"/>
+                </ion-col>
+                <ion-col width-33 *ngIf="index +2 < data.length">
+                    <img (click)="openPhoto(data[index+2])" [src]="data[index+2]['imageThumb']"/>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+
+
+    <ion-infinite-scroll *ngIf="moreItem" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
+
+<input *ngIf="!cordova"
+       #inputFile
+       type="file"
+       (change)="onChange($event)"
+       accept="image/x-png, image/gif, image/jpeg"
+       max-size="2048"
+       style="display: none;">

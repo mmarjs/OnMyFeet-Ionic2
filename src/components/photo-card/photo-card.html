@@ -1,0 +1,76 @@
+<ion-card>
+    <ion-item>
+        <ion-avatar (click)="openProfile(item.user.username)" item-left>
+            <img *ngIf="item.user.photo" [src]="item.user.photo" width="40px" height="40px">
+            <img *ngIf="!item.user.photo" src="assets/img/user.png">
+        </ion-avatar>
+        <h2 (click)="openProfile(item.user.username)">{{item.user.name || item.user.first_name + ' ' + item.user.last_name || item.user.username }}</h2>
+
+        <ion-note item-right>{{item.createdAt | amTimeAgo}}</ion-note>
+
+        <button (click)="openPopover($event)" ion-button large clear item-right>
+            <ion-icon name="md-more"></ion-icon>
+        </button>
+    </ion-item>
+
+    <img-progressive class="img-gallery"
+                     [src]="item['image']"
+                     [srcLow]="item['imageLow']" *ngIf="!item['video_url']">
+
+    </img-progressive>
+
+    <video [src]="item['video_url']" class="centerme" controls="controls" poster="{{item['image']}}" *ngIf="item['video_url']"></video>
+  <!--<img-progressive class="img-gallery video-overlay" [src]="item['image']" [srcLow]="item['imageLow']" (click)="openVideoPopup(item)" *ngIf="item.obj.video_url">
+
+    </img-progressive>-->
+
+    <ion-card-content *ngIf="item.title">
+        <p>{{item.title}}</p>
+            
+    </ion-card-content>
+
+    <ion-item class="item-buttons">
+        <button [disabled]="item.loading" ion-button large clear (click)="onLike(item)" [ngClass]="{'custom-button': item.isLiked}">
+            <ion-icon *ngIf="!item.isLiked" large name="icon-new-likes"></ion-icon>
+            <ion-icon *ngIf="item.isLiked" large name="icon-new-like"></ion-icon>
+        </button>
+        <button ion-button large clear (click)="openComments(item)">
+            <ion-icon name="icon-new-comment"></ion-icon>
+        </button>
+        <button (click)="sharePhoto(item)" ion-button large clear>
+            <ion-icon name="icon-new-share"></ion-icon>
+        </button>
+
+        <button (click)="openAlbum(item.album)" ion-button large clear>
+            {{item.album.title}}
+        </button>
+        <button ion-button outline item-right *ngIf="storeUrl != ''" (click)="openStore()" class="custom-button">Buy Now</button>
+        <button [disabled]="item.loadingBookmark" (click)="onBookmark(item)" ion-button item-right large clear>
+            <ion-icon *ngIf="!item.isBookmark" name="ios-bookmark-outline"></ion-icon>
+            <ion-icon *ngIf="item.isBookmark" name="ios-bookmark"></ion-icon>
+        </button>
+
+
+    </ion-item>
+    <ion-item>
+        <ion-note>
+            <ion-icon name="icon-new-like"></ion-icon>
+            {{item.likesTotal | absolute}} {{'likes' | translate}}
+        </ion-note>
+    </ion-item>
+    <ion-item *ngIf="item.items.length > 0">
+      <ion-note>
+        <ion-icon name="pricetag"></ion-icon>
+        <ul class="item-tags">
+          <li *ngFor="let tag of item.items;">
+            <a href="{{'http://www.onmyfeet.store/tag/' + tag.value}}">{{'#' + tag.value}}</a>
+          </li>
+        </ul>
+      </ion-note>
+    </ion-item>
+    <div padding>
+        <p *ngFor="let comment of item.comments">
+            <b>{{item.user.username || item.user.first_name + ' ' + item.user.last_name}}</b> {{comment.text}}
+        </p>
+    </div>
+</ion-card>

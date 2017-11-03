@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-searchbar [(ngModel)]="words"
+                       (ionInput)="doSearch()"
+                       (ionCancel)="doCancel()"
+                       placeholder="{{'Search user' | translate }}"></ion-searchbar>
+
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <loader *ngIf="loading "></loader>
+    <!-- error -->
+    <div class="center" *ngIf="showErrorView" padding>
+        <div class="error ">
+            <ion-icon [name]="errorIcon"></ion-icon>
+            <p>{{ 'Connection unavailable' | translate }}</p>
+            <button ion-button color="primary" (click)="doTry()">
+                {{ 'Try again' | translate }}
+            </button>
+        </div>
+    </div>
+    <!-- empty-->
+    <div class="center" *ngIf="showEmptyView" padding>
+        <div class="error">
+            <ion-icon [name]="errorIcon"></ion-icon>
+            <p>{{ 'users not found' | translate }}</p>
+        </div>
+    </div>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list *ngIf="!loading">
+        <ion-item *ngFor="let item of data">
+            <ion-avatar item-left>
+                <img *ngIf="!item.photo" src="assets/img/user.png">
+                <img *ngIf="item.photo" [src]="item.photo">
+            </ion-avatar>
+            <ion-label>
+                <h2>{{item.name || item.first_name + ' ' + item.last_name}}</h2>
+                <p>{{item.username}}</p>
+            </ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="item.checked" item-right></ion-checkbox>
+        </ion-item>
+
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <p padding-left>{{'Select users' | translate}}</p>
+        <ion-buttons end>
+            <button (click)="onCreateChannel()" ion-button icon-right color="primary">
+                {{'Next' | translate}}
+                <ion-icon name="send"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

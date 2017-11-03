@@ -1,0 +1,9 @@
+<input *ngIf="!cordova" #inputFile type="file" (change)="onChange($event)" accept="image/x-png, image/gif, image/jpeg" max-size="2048"
+    style="display: none;">
+<ion-tabs tabsPlacement="bottom" preloadTabs="true" #myTabs>
+    <ion-tab [root]="tabHome" tabIcon="home"></ion-tab>
+    <ion-tab [root]="tabSearch" tabIcon="search"></ion-tab>
+    <ion-tab [root]="tabCapture" tabIcon="icon-new-camera"></ion-tab>
+    <ion-tab [root]="tabActivity" tabIcon="icon-new-activity" [tabBadge]="tabActivityBadge" tabBadgeStyle="danger"></ion-tab>
+    <ion-tab [root]="tabProfile" tabIcon="person"></ion-tab>
+</ion-tabs>

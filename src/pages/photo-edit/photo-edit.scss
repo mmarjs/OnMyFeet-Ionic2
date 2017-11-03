@@ -1,0 +1,21 @@
+page-photo-edit {
+    max-width: 640px !important;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .item-tags {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: inline;
+
+      li {
+        display: inline;
+      }
+    }
+    tag-input {
+    background:#fff;
+    padding-left: 10px;
+  }
+}

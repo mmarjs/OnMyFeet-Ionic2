@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Add Locker</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="form" #rForm="ngForm" (ngSubmit)="submit(rForm)">
+        <ion-item>
+            <ion-label floating>{{'Title' | translate}}</ion-label>
+            <ion-input type="text" formControlName="title"></ion-input>
+        </ion-item>
+        <ion-item class="form-error-list" *ngIf="!form.controls.title.pristine && !form.controls.title.valid">
+            <p class="form-error" item-right
+               *ngIf="!form.controls.title.pristine && form.controls.title.hasError('required')">
+                {{'This is a required field.' | translate}}
+            </p>
+            <p class="form-error" item-right
+               *ngIf="!form.controls.title.pristine && form.controls.title?.errors?.minlength">
+                {{'Password must have more than 4 characters' | translate}}
+            </p>
+        </ion-item>
+        <ion-item>
+            <ion-label floating color="primary">{{'Description' | translate}}</ion-label>
+            <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+        <div padding>
+            <button ion-button type="submit" block>{{ 'Submit' | translate }}</button>
+        </div>
+    </form>
+</ion-content>

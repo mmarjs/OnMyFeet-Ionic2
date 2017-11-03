@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                {{'Cancel' | translate}}
+            </button>
+        </ion-buttons>
+        <ion-title>{{'Crop Image' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <img [(src)]="img" id="image" [ngClass]="class"/>
+    <div *ngIf="cropIcon == 'checkmark'">
+      <ion-scroll scrollX='true' style=" height: 125px">
+        <ion-grid>
+          <ion-row nowrap>
+            <ion-col col-3 style="padding: 5px;" (click)="getClass()">
+              <!--                     <img style="height: 110px;    padding: 5px;width: auto;margin: 0 auto;" src={{img}}/> -->
+              <div class="filter-name">
+                <img [src]="img" />
+                <div>Orignal</div>
+              </div>
+            </ion-col>
+            <ion-col col-3 style="padding: 5px;" *ngFor=" let filter of filters; let i=index " (click)="getClass(filter)">
+              <!--  <img style="height: 110px;    padding: 5px;width: auto;margin: 0 auto;" [ngClass]='filter' src={{img}}/> -->
+              <div class="filter-name">
+                <img [src]="img" [ngClass]="filter"/>
+                <div>{{filter | capitalize}}</div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-scroll>
+    </div>
+    <!--Rotate-->
+    <ion-fab left bottom>
+        <button color="dark" ion-fab mini (click)="rotate(-90)">
+            <ion-icon class="invert" name="refresh"></ion-icon>
+        </button>
+    </ion-fab>
+
+    <!-- Crop-->
+    <ion-fab center bottom>
+        <button color="blue" ion-fab (click)="crop()">
+            <ion-icon [name]="cropIcon"></ion-icon>
+        </button>
+    </ion-fab>
+
+    <!-- Rotate-->
+    <ion-fab right bottom>
+        <button color="dark" ion-fab mini (click)="rotate(90)">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+    </ion-fab>
+
+
+</ion-content>
+

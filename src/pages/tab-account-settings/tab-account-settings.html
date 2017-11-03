@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="primaryContrast">
+        <ion-title>{{'Options'|translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+
+    <ion-list>
+        <ion-item (click)="onInviteFriends()">{{'Invite Friends' | translate}}</ion-item>
+        <ion-item (click)="onFacebookFriends()">{{'Find Facebook Friends' | translate }}</ion-item>
+        <ion-item (click)="editModal()">{{'Edit Profile' | translate}}</ion-item>
+        <ion-item (click)="changePassword()">{{'Change Password' | translate}}</ion-item>
+        <ion-item (click)="modalLanguage()">{{'Language'|translate}}</ion-item>
+        <ion-item (click)="onTerms()">{{'Terms of Service' | translate}}</ion-item>
+        <ion-item (click)="storePage()">Store</ion-item>
+        <ion-item (click)="soulPage()">Soles</ion-item>
+        <ion-item (click)="aboutPage()">{{'About' | translate}}</ion-item>
+        <ion-item (click)="logout()">{{'Logout'|translate}}</ion-item>
+    </ion-list>
+</ion-content>

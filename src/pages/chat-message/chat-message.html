@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>{{'Chat' | translate}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="popover($event)">
+                <ion-icon name="information-circle"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <loader *ngIf="loading && !data.length"></loader>
+    <!-- error -->
+    <div class="center" *ngIf="showErrorView" padding>
+        <div class="error ">
+            <ion-icon [name]="errorIcon"></ion-icon>
+            <p>{{ 'Connection unavailable' | translate }}</p>
+            <button ion-button color="primary" (click)="doTry()">
+                {{ 'Try again' | translate }}
+            </button>
+        </div>
+    </div>
+    <!-- empty-->
+    <div class="center" *ngIf="showEmptyView" padding>
+        <div class="error">
+            <ion-icon [name]="errorIcon"></ion-icon>
+            <p>{{ 'Photos not found' | translate }}</p>
+        </div>
+    </div>
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div *ngIf="!loading">
+
+        <div class="message-wrapper" *ngFor="let item of data">
+
+            <div>
+                <img class="profile-pic" [ngClass]="item.class" [src]="item.profile.photo">
+
+                <div class="chat-bubble " [ngClass]="item.class">
+
+                    <img *ngIf="item.image" [src]="item.image">
+
+                    <div class="message"> {{item.message}}</div>
+
+                    <div class="message-detail">
+                        <span>{{item.createdAt | date:'HH:mm'}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer *ngIf="!loading">
+    <ion-toolbar>
+        <ion-input [(ngModel)]="form.message" type="text" placeholder="{{'Message'}}" (keyup)="kekypress($event)"></ion-input>
+        <ion-buttons end>
+            <button ion-button color="primary" (click)="onSendMessage()">
+                <ion-icon name="send"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

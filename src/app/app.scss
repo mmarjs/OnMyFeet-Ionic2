@@ -1,0 +1,364 @@
+// http://ionicframework.com/docs/v2/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+// ion-content {
+//   max-width: 640px;
+//   margin: 0 auto;
+//   position: relative !important;
+// }
+
+.invalid {
+  border: 1px solid #ea6153;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../assets/fonts/icomoon.eot?ycyxu5');
+  src:  url('../assets/fonts/icomoon.eot?ycyxu5#iefix') format('embedded-opentype'),
+    url('../assets/fonts/icomoon.ttf?ycyxu5') format('truetype'),
+    url('../assets/fonts/icomoon.woff?ycyxu5') format('woff'),
+    url('../assets/fonts/icomoon.svg?ycyxu5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"],
+[class^="ion-ios-icon"],
+[class*="ion-ios-icon"],
+[class^="ion-md-icon"],
+[class*="ion-md-icon"]{
+  @extend .ion;
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+@charset "UTF-8";
+.ion-ios-icon-new-activity:before,
+.ion-ios-icon-new-activity-circle:before,
+.ion-ios-icon-new-activity-circle-outline:before,
+.ion-ios-icon-new-activity-outline:before,
+.ion-md-icon-new-activity:before,
+.ion-md-icon-new-activity-circle:before,
+.ion-md-icon-new-activity-circle-outline:before,
+.ion-md-icon-new-activity-outline:before {
+  content: "\e900";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-camera:before,
+.ion-ios-icon-new-camera-circle:before,
+.ion-ios-icon-new-camera-circle-outline:before,
+.ion-ios-icon-new-camera-outline:before,
+.ion-md-icon-new-camera:before,
+.ion-md-icon-new-camera-circle:before,
+.ion-md-icon-new-camera-circle-outline:before,
+.ion-md-icon-new-camera-outline:before {
+  content: "\e901";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-like:before,
+.ion-ios-icon-new-like-circle:before,
+.ion-ios-icon-new-like-circle-outline:before,
+.ion-ios-icon-new-like-outline:before,
+.ion-md-icon-new-like:before,
+.ion-md-icon-new-like-circle:before,
+.ion-md-icon-new-like-circle-outline:before,
+.ion-md-icon-new-like-outline:before {
+  content: "\e902";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-likes:before,
+.ion-ios-icon-new-likes-circle:before,
+.ion-ios-icon-new-likes-circle-outline:before,
+.ion-ios-icon-new-likes-outline:before,
+.ion-md-icon-new-likes:before,
+.ion-md-icon-new-likes-circle:before,
+.ion-md-icon-new-likes-circle-outline:before,
+.ion-md-icon-new-likes-outline:before {
+  content: "\e903";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-soles:before,
+.ion-ios-icon-new-soles-circle:before,
+.ion-ios-icon-new-soles-circle-outline:before,
+.ion-ios-icon-new-soles-outline:before,
+.ion-md-icon-new-soles:before,
+.ion-md-icon-new-soles-circle:before,
+.ion-md-icon-new-soles-circle-outline:before,
+.ion-md-icon-new-soles-outline:before {
+  content: "\e904";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-store:before,
+.ion-ios-icon-new-store-circle:before,
+.ion-ios-icon-new-store-circle-outline:before,
+.ion-ios-icon-new-store-outline:before,
+.ion-md-icon-new-store:before,
+.ion-md-icon-new-store-circle:before,
+.ion-md-icon-new-store-circle-outline:before,
+.ion-md-icon-new-store-outline:before {
+  content: "\e905";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-comment:before,
+.ion-ios-icon-new-comment-circle:before,
+.ion-ios-icon-new-comment-circle-outline:before,
+.ion-ios-icon-new-comment-outline:before,
+.ion-md-icon-new-comment:before,
+.ion-md-icon-new-comment-circle:before,
+.ion-md-icon-new-comment-circle-outline:before,
+.ion-md-icon-new-comment-outline:before {
+  content: "\e907";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-chat:before,
+.ion-ios-icon-new-chat-circle:before,
+.ion-ios-icon-new-chat-circle-outline:before,
+.ion-ios-icon-new-chat-outline:before,
+.ion-md-icon-new-chat:before,
+.ion-md-icon-new-chat-circle:before,
+.ion-md-icon-new-chat-circle-outline:before,
+.ion-md-icon-new-chat-outline:before {
+  content: "\e906";
+  font-size: 26px;
+}
+
+.ion-ios-icon-new-share:before,
+.ion-ios-icon-new-share-circle:before,
+.ion-ios-icon-new-share-circle-outline:before,
+.ion-ios-icon-new-share-outline:before,
+.ion-md-icon-new-share:before,
+.ion-md-icon-new-share-circle:before,
+.ion-md-icon-new-share-circle-outline:before,
+.ion-md-icon-new-share-outline:before {
+  content: "\e908";
+  font-size: 26px;
+}
+
+ion-app.disable-scroll {
+    ion-content>.scroll-content {
+        overflow: hidden;
+    }
+}
+
+.background {
+  background: #3c3c3c;
+
+  ion-item, .ion-item, .item-ios, .item-md, .label-md {
+    background: transparent;
+    color: #fff;
+    border: none;
+    ion-icon {
+      color: #fff;
+    }
+  }
+
+  input, .text-input {
+    $placeholder-color: rgba(255,255,255,0.4) !default;
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: $placeholder-color;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      color: $placeholder-color;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      color: $placeholder-color;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      color: $placeholder-color;
+    }
+  }
+
+  .item-block:last-child, .item-inner {
+    border-bottom: 0.55px solid rgba(255, 255, 255, 0.18) !important;
+  }
+
+  .item-block:first-child {
+    border-top: none;
+  }
+
+  .form-error {
+    color: #f00;
+  }
+
+  [icon-left] ion-icon {
+    left: 25px;
+    top:30%;
+    position: absolute;
+  }
+}
+
+.logo {
+  display: inline-block;
+  height: 37px;
+}
+
+ion-modal {
+  z-index: 1000 !important;
+}
+
+img {
+  background-color: #f1f1f1;
+}
+
+.toolbar-md {
+  padding: 0;
+  ion-segment {
+    min-height: 56px !important;
+
+    ion-segment-button {
+      min-height: 56px !important;
+      line-height: 56px !important;
+    }
+  }
+}
+
+// Map Scss
+ion-app.ios, ion-app.md, ion-app.wp {
+  background-color: transparent !important;
+}
+
+.scroll {
+  height: 100%;
+}
+
+scroll-content._gmaps_cdv_ {
+  background-color: transparent !important;
+  padding: 0px !important;
+}
+
+ion-app._gmaps_cdv_ .nav-decor {
+  background-color: transparent !important;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+ion-avatar {
+  img {
+    max-width: 3.6rem;
+    max-height: 3.6rem;
+    border-radius: 1.8rem;
+    display: block;
+  }
+}
+
+// Toolbar Color fix
+.toolbar-md-primary {
+  ion-segment-button.segment-button {
+  border-color: rgba(255, 255, 255, 0.35);
+    &.segment-activated {
+      border-bottom: 4px solid #fff !important;
+      color: #fff !important;
+    }
+    color: #fff;
+  }
+}
+
+.toolbar-wp-primary {
+  ion-segment-button.segment-button {
+    &.segment-activated {
+      color: #fff !important;
+    }
+    color: #fff;
+  }
+}
+
+.toolbar-ios-primary {
+  ion-segment-button.segment-button {
+    border-color: rgba(255, 255, 255, 0.35);
+    &.segment-activated {
+      color: #fff !important;
+      background-color: darken($primary, 5);
+    }
+    color: #fff;
+  }
+}
+
+// Center
+.center {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+
+  ion-icon {
+    color: #A2A6A9;
+    font-size: 5em;
+  }
+
+  p {
+    font-size: 1.5em;
+    color: #A2A6A9;
+  }
+}
+
+.tabs-md .tabbar,
+.tabs-ios .tabbar {
+  background: #000;
+}
+
+.segment-ios-primary .segment-button, .segment-md-primary .segment-button {
+  border-color: #3c3c3c;
+    color: #fff;
+    background: #000;
+}
+
+.content-ios, .content-md {
+  background: #3c3c3c;
+}
+
+.ng2-menu-item {
+    font-size: 1.3em !important;
+  }
+
+ion-tab, page-tab-account-settings.ion-page, page-account-edit-modal.ion-page, page-user-password.ion-page, facebook-user-list.ion-page, language-modal.ion-page, page-terms.ion-page, page-profile.ion-page, page-intro.ion-page, page-auth-login.ion-page, page-auth-register.ion-page, page-auth-avatar.ion-page, page-chat-channel.ion-page, page-chat-message.ion-page, page-chat-message-popover.ion-page, page-chat-share-photo.ion-page, page-facebook-user-list.ion-page, page-phone-contact.ion-page, page-photo.ion-page, page-photo-edit.ion-page, page-photo-popover.ion-page, ion-photo-crop-modal ion-header, photo-share-modal.ion-page, photo-comment-modal ion-header, photo-comment-modal .scroll-content, album-photo-grid.ion-page, album-form-modal.ion-page, page-chat-form ion-header {
+  top: 20px;
+}
+
+page-chat-message ion-footer {
+  bottom: 20px;
+}
+

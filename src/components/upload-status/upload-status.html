@@ -1,0 +1,7 @@
+<ion-item *ngFor="let item of uploads">
+    <ion-avatar item-left>
+        <img [src]="item.image">
+    </ion-avatar>
+    <h2>{{item.form.title}}</h2>
+    <ion-spinner item-right=""></ion-spinner>
+</ion-item>

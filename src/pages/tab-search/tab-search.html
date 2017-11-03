@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar color="primaryContrast">
+        <ion-searchbar [(ngModel)]="search"
+                       (ionInput)="doSearch()"
+                       (ionCancel)="onReload()"
+                       [debounce]="1000"
+                       placeholder="{{'Search'| translate }}"></ion-searchbar>
+        <ion-buttons end>
+            <button ion-button icon-only >
+                <ion-icon name="md-more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+    <ion-segment [(ngModel)]="type" color="primary">
+        <ion-segment-button (ionSelect)="onSelectType('photo')" value="photo">
+            {{'Photos' | translate}}
+        </ion-segment-button>
+        <ion-segment-button (ionSelect)="onSelectType('user')" value="user">
+            {{'Users' | translate}}
+        </ion-segment-button>
+        <ion-segment-button (ionSelect)="onSelectType('map')" value="map">
+            {{'Map' | translate}}
+        </ion-segment-button>
+    </ion-segment>
+</ion-header>
+<ion-content>
+
+
+    <ion-refresher (ionRefresh)="doRefresh($event)"
+                   [enabled]="!isIOS"
+                   *ngIf="type!=='map'">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <photo-grid [event]="eventName" *ngIf="type=='photo'"></photo-grid>
+    <user-list [event]="eventName" *ngIf="type=='user'"></user-list>
+    <map-gallery *ngIf="type=='map'"></map-gallery>
+
+
+    <ion-infinite-scroll  *ngIf="type!=='map'" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>

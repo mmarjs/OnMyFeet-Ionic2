@@ -1,0 +1,12 @@
+page-album-list-modal {
+
+  $thumbsize: 80px;
+  ion-thumbnail {
+    img {
+      display: block !important;
+      height: $thumbsize !important;
+      width: $thumbsize !important;
+    }
+  }
+
+}

@@ -1,0 +1,70 @@
+#!/bin/bash
+#
+# Creates a signed and zipaligned APK from your Ionic project
+#
+# Place your keystore in the root of your project and name it <company>.keystore
+# Use this script as following :
+#
+# $ ./bin/apk [company] [appname] [version]
+# Example:
+# $ ./bin/apk agenciafoccus Photogram 2.7.14 ../../agfoccus.keystore
+#
+#
+# Original at https://gist.github.com/th3m4ri0/acc2003adc7dffdbbad6
+# Author : Erwan d'Orgeville<info@erwandorgeville.com>
+#
+# Features : Willian Ribeiro Angelo<agfoccus@gmail.com>
+
+# keytool -exportcert -list -v -alias [alias] -keystore [yourkey.keystore]
+
+# Abort if any command returns something else than 0
+set -e
+
+company="$1"
+appname="$2"
+version="$3"
+keystore="$4"
+
+if [[ -z "$1" ]]; then
+    echo "No company name provided, aborting..."
+    exit 1
+fi
+if [[ -z "$2" ]]; then
+    echo "No appname, aborting..."
+    exit 1
+fi
+
+if [[ -z "$3" ]]; then
+    echo "No version provided, aborting..."
+    exit 1
+fi
+
+if [[ -z "$4" ]]; then
+    echo "No keystore, aborting..."
+    exit 1
+fi
+
+echo "       $2      Version: $3 "
+echo ""
+echo ""
+
+echo "---> Ionic Build build  $appname v$version"
+ionic build  --prod
+
+echo "---> Cordova build release  $appname v$version"
+cordova build android --release
+
+echo ""
+echo ""
+echo "---> Zipaligning"
+
+mkdir -p releases/
+./zipalign -v -p 4 platforms/android/build/outputs/apk/android-release.apk releases/com.$company.$appname.v$version.apk
+/usr/local/Cellar/android-sdk/24.4.1_1/build-tools/25.0.2/apksigner sign --ks $keystore releases/com.$company.$appname.v$version.apk
+/usr/local/Cellar/android-sdk/24.4.1_1/build-tools/25.0.2/apksigner verify --verbose releases/com.$company.$appname.v$version.apk
+
+echo ""
+echo ""
+echo "---> App released ! Look for releases/com.$company.$appname.v$version.apk"
+
+open releases/

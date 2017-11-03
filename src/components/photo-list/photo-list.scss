@@ -1,0 +1,32 @@
+photo-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  .img-gallery {
+    display: block;
+    min-height: 150px;
+    width: 100%;
+    background-color: #f1f1f1;
+  }
+
+  .error {
+    margin-top: 120px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .grid {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+    }
+
+    ion-col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 10px !important;
+    }
+  }
+
+}

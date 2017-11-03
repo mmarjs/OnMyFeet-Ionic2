@@ -1,0 +1,36 @@
+<loader *ngIf="loading"></loader>
+<!-- error -->
+<div class="center" *ngIf="showErrorView" padding>
+    <div class="error ">
+        <ion-icon [name]="errorIcon"></ion-icon>
+        <p>{{ 'Connection unavailable' | translate }}</p>
+        <button ion-button color="primary" (click)="doTry()">
+            {{ 'Try again' | translate }}
+        </button>
+    </div>
+</div>
+<!-- empty-->
+<div class="center" *ngIf="showEmptyView" padding>
+    <div class="error">
+        <ion-icon [name]="errorIcon"></ion-icon>
+        <p>{{ 'Photos not found' | translate }}</p>
+    </div>
+</div>
+<div *ngIf="data.length">
+    <ion-list>
+        <ion-grid fixed>
+            <ion-row align-items-stretch>
+                <ion-col col-6 col-md-2 align-self-stretch align-self-center *ngFor="let item of data">
+                    <ion-card>
+                        <img (click)="openPhoto(item)" [src]="item['imageThumb']">
+                        <ion-card-content>
+                            <ion-card-title>
+                                {{ item.title}}
+                            </ion-card-title>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+</div>

@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{'Profile'| translate}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openPopover($event)">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <div class="profile-top">
+    <ion-row>
+      <ion-col col-3>
+        <div class="img-avatar">
+          <img *ngIf="profile.photo" [src]="profile.photo"/>
+          <img *ngIf="!profile.photo" src="assets/img/user.png"/>
+        </div>
+      </ion-col>
+      <ion-col col-9>
+        <ion-row>
+          <ion-col class="text-center">
+            <ion-spinner *ngIf="loading"></ion-spinner>
+            <b *ngIf="!loading">{{ profile.galleriesTotal || 0}}</b>
+            <p>{{'posts' | translate }}</p>
+          </ion-col>
+          <ion-col class="text-center">
+            <ion-spinner *ngIf="loading"></ion-spinner>
+            <b *ngIf="!loading">{{ profile.followersTotal || 0}}</b>
+            <p>{{'followers' | translate}}</p>
+          </ion-col>
+          <ion-col class="text-center">
+            <ion-spinner *ngIf="loading"></ion-spinner>
+            <b *ngIf="!loading">{{ profile.followingsTotal || 0}}</b>
+            <p>{{'following' | translate }}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div *ngIf="loading" class="text-center">
+              <ion-spinner></ion-spinner>
+            </div>
+            <div *ngIf="!loading && !canEdit" (click)="follow(profile)">
+              <button *ngIf="profile.isFollow" [disabled]="profile.loading" ion-button block color="primary" small>
+                {{ 'Unfollow' | translate }}
+              </button>
+              <button *ngIf="!profile.isFollow" [disabled]="profile.loading" outline ion-button block color="primary"
+                      small>
+                {{ 'Follow' | translate }}
+              </button>
+            </div>
+            <div *ngIf="canEdit">
+              <button ion-button block color="primary" small (click)="onEditProfile()">
+                {{ 'Edit profile' | translate }}
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="profile-desc">
+    <ion-row>
+      <ion-col>
+        <h3>{{ profile.username || profile.first_name + ' ' + profile.last_name }}</h3>
+        <p>{{ profile.status }}</p>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-segment [(ngModel)]="type" color="primary">
+    <ion-segment-button (ionSelect)="onSelectType('list')" value="list">
+      <ion-icon name="ios-list-outline"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button (ionSelect)="onSelectType('grid')" value="grid">
+      <ion-icon name="ios-apps-outline"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button (ionSelect)="onSelectType('album')" value="album">
+      <ion-icon name="ios-image-outline"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="eventName">
+    <photo-list [event]="eventName" *ngIf="type=='list'"></photo-list>
+    <photo-grid [event]="eventName" *ngIf="type=='grid'"></photo-grid>
+    <album-grid [event]="eventName" *ngIf="type=='album'"></album-grid>
+  </div>
+
+  <ion-infinite-scroll *ngIf="moreItem" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

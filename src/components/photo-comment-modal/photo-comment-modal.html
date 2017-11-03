@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{'Comments' | translate}}
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <loader *ngIf="loading"></loader>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- error -->
+  <div class="center" *ngIf="showErrorView" padding>
+    <div class="error ">
+      <ion-icon [name]="errorIcon"></ion-icon>
+      <p>{{ "errorText" | translate }}</p>
+      <button ion-button color="primary" (click)="onGallery()">
+                {{ 'tryAgainText' | translate }}
+      </button>
+    </div>
+  </div>
+  <!-- empty-->
+  <div class="center" *ngIf="showEmptyView" padding>
+    <div class="error">
+      <ion-icon [name]="errorIcon"></ion-icon>
+      <p>{{ 'Not Comments' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="message-wrapper" *ngFor="let item of data">
+      <div>
+
+          <img class="profile-pic" [ngClass]="item.class"  [src]="item.photo">
+
+          <div class="chat-bubble " [ngClass]="item.class">
+
+              <div class="message"> {{item.get('text')}}</div>
+
+              <div class="message-detail">
+                  <span class="bold">{{item.get('profile').get('name') || item.get('profile').get('first_name')}}</span>,
+                  <span>{{item.createdAt | amTimeAgo }}</span>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+
+</ion-content>
+<ion-footer >
+  <form #rForm="ngForm" (ngSubmit)="onComment(rForm)" novalidate>
+    <ion-toolbar>
+      <ion-input [(ngModel)]="form.text"
+                 focus
+                 (blur)="blurInput($event)"
+                 name="comment"
+                 type="text"
+                 placeholder="{{'Comment in here' | translate }}" required></ion-input>
+      <ion-buttons end>
+        <button ion-button color="primary">
+                    <ion-icon name="send"></ion-icon>
+                </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </form>
+</ion-footer>

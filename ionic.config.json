@@ -1,0 +1,8 @@
+{
+  "name": "photogram",
+  "app_id": "51e2e836",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

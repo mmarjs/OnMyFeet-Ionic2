@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons start>
+            <button ion-button clear (click)="dismiss(true)">
+                {{'Cancel' | translate}}
+            </button>
+        </ion-buttons>
+        <ion-title>{{'Share' | translate }}</ion-title>
+        <ion-buttons end>
+            <button ion-button clear (click)="submit(shareImageForm)">
+                {{'Next' | translate}}
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form #shareImageForm="ngForm" (ngSubmit)="submit(shareImageForm)" novalidate>
+        <ion-list>
+            <ion-item>
+                <ion-thumbnail item-left>
+                    <img (click)="dismiss()" [src]="form.image">
+                </ion-thumbnail>
+                <ion-textarea [(ngModel)]="form.title"
+                              name="title"
+                              placeholder="{{'Write a caption...' | translate}}"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <ion-label>{{'Privacy' | translate}}</ion-label>
+                <ion-select [(ngModel)]="form.privacity" name="privacity">
+                    <ion-option value="public">{{'Public' | translate}}</ion-option>
+                    <ion-option value="followers">{{'Followers' | translate}}</ion-option>
+                    <ion-option value="me">{{'Me' | translate }}</ion-option>
+                </ion-select>
+            </ion-item>
+            <tag-input [(ngModel)]="form.items" name="items">
+                 <tag-input-dropdown [autocompleteItems]="autoCompleteTags">
+       </tag-input-dropdown>
+            </tag-input>
+            <!-- Album -->
+            <album-input [album]="album" ></album-input>
+            <!-- Location -->
+            <address-input [address]="form.address"></address-input>
+        </ion-list>
+    </form>
+</ion-content>
+
